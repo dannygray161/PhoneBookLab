@@ -28,7 +28,7 @@ namespace PhoneBookLab
                 {
                     Console.Write("Hello, Welcome to the PhoneBook!" + "\n" + "Please choose one of the following options" + "\n" + "1. Add someone to PhoneBook " + "\n" +
                     "2. Remove Someone From PhoneBook " + "\n" + "3. View All PhoneBook Entries (Contacts) " + "\n" + "4. Edit Existing Contact" +
-                    "\n" + "5. Exit " + "\n" + "\n");
+                    "\n" + "5. Exit " + "\n" + "6. view txt file contents " + "\n" + "\n");
                     var userEntry = Convert.ToInt32(Console.ReadLine());
 
 
@@ -54,6 +54,10 @@ namespace PhoneBookLab
                             Console.WriteLine("Thank you for using my Phonebook!!");
                             phonebookIsRunning = false;
                             break;
+                        case 6:
+                            pb1.viewTextFile();
+                            phonebookIsRunning = false;
+                            break;
                         default:
                             Console.WriteLine("I do not recognize that selection, please try again.");
                             phonebookIsRunning = true;
@@ -69,12 +73,14 @@ namespace PhoneBookLab
                 if (cont.ToLower() == "y")
                 {
                     cont1 = true;
+                    Console.Clear();
                     phonebookIsRunning = true;
                 }
                 else
                 {
                     Console.WriteLine("Thank You for using this application!");
                     cont1 = false;
+                    Console.Clear();
                     phonebookIsRunning = false;
 
                 }

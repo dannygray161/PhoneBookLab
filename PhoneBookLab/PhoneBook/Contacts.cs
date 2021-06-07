@@ -13,12 +13,10 @@ namespace PhoneBookLab
         public string lName;
         public string[] address;
         public string phoneNumber;
-
-       public static List<Contacts> People = new List<Contacts>();
-
+        public string filePath = @"C:\Users\diese\Documents\txtFile\Contacts.txt";
 
 
-
+        public static List<Contacts> People = new List<Contacts>();
 
 
         public void DisplayContacts(Contacts contacts)
@@ -29,7 +27,7 @@ namespace PhoneBookLab
             Console.WriteLine($"Address 2: {contacts.address[1]}");
             Console.WriteLine($"Phone Nnumber: {contacts.phoneNumber}");
             Console.WriteLine($"<-------------------------------------->");
-        }   
+        }
 
 
         public void addUser()
@@ -37,7 +35,6 @@ namespace PhoneBookLab
             #region addUser
 
             bool isCorrect = true;
-            string filePath = @"C:\Users\diese\Documents\txtFile\Contacts.txt";
 
 
                 while (isCorrect) 
@@ -64,6 +61,19 @@ namespace PhoneBookLab
                     if (correct.ToLower() == "y")
                     {
                         People.Add(contacts);
+                        using(StreamWriter sw = new StreamWriter(filePath))
+                        {
+                        foreach(var contact in People)
+                        {
+                            sw.WriteLine(contact.fName);
+                            sw.WriteLine(contact.lName);
+                            sw.WriteLine(contact.address[0]);
+                            sw.WriteLine(contact.address[1] + "(Optional Address 2)");
+                            sw.WriteLine(contact.phoneNumber);
+                            Console.WriteLine("<------------------->");
+                        }
+
+                        }
                         Console.WriteLine("Alright, we got them added for you!! ");
                         isCorrect = false;
                         break;
@@ -132,7 +142,10 @@ namespace PhoneBookLab
         {
             Console.WriteLine("Please enter the first name of the user you wish to delete: ");
             string firstName = Console.ReadLine();
+            Console.WriteLine("Please enter the last name of the user you wish to delete: ");
+            string lastName = Console.ReadLine();
             Contacts contacts = Contacts.People.FirstOrDefault(x => x.fName.ToLower() == firstName.ToLower());
+            contacts = Contacts.People.FirstOrDefault(y => y.lName.ToLower() == lastName.ToLower());
             if(contacts == null)
             {
                 Console.WriteLine("That person could not be found, Press any key to continue: ");
@@ -162,10 +175,54 @@ namespace PhoneBookLab
             foreach(var person in People)
             {
                 DisplayContacts(person);
+                //using (StreamReader sr = new StreamReader(filePath))
+                //{
+                //    foreach (var contact in People)
+                //    {
+                //        Console.WriteLine("First Name: " + sr.ReadLine());
+                //        Console.WriteLine("Last Name: " + sr.ReadLine());
+                //        Console.WriteLine("Address 1: " + sr.ReadLine());
+                //        Console.WriteLine("Address 2: (optional) " + sr.ReadLine());
+                //        Console.WriteLine("Phone Number: " + sr.ReadLine());
+                //        Console.WriteLine("<-------------------------->");
+
+
+                //    }
+                //}
                
             }
             Console.WriteLine("Press any key to continue: ");
             Console.ReadKey();
+        }
+        public void viewTextFile()
+        {
+           if(Contacts.People.Count == 0)
+            {
+                Console.WriteLine("Im sorry, there are no contacts, would you like to add some? Y/N: ");
+                if(Console.ReadKey().Key == ConsoleKey.Y)
+                {
+                    return;
+                }
+                
+            }
+           else
+            {
+                using (StreamReader sr = new StreamReader(filePath))
+                {
+                    foreach (var contact in People)
+                    {
+                        Console.WriteLine("First Name: " + sr.ReadLine());
+                        Console.WriteLine("Last Name: " + sr.ReadLine());
+                        Console.WriteLine("Address 1: " + sr.ReadLine());
+                        Console.WriteLine("Address 2: (optional) " + sr.ReadLine());
+                        Console.WriteLine("Phone Number: " + sr.ReadLine());
+                        Console.WriteLine("<-------------------------->");
+
+
+                    }
+                }
+            }
+           
         }
 
         #region Edit Methods
