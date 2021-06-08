@@ -175,20 +175,7 @@ namespace PhoneBookLab
             foreach(var person in People)
             {
                 DisplayContacts(person);
-                //using (StreamReader sr = new StreamReader(filePath))
-                //{
-                //    foreach (var contact in People)
-                //    {
-                //        Console.WriteLine("First Name: " + sr.ReadLine());
-                //        Console.WriteLine("Last Name: " + sr.ReadLine());
-                //        Console.WriteLine("Address 1: " + sr.ReadLine());
-                //        Console.WriteLine("Address 2: (optional) " + sr.ReadLine());
-                //        Console.WriteLine("Phone Number: " + sr.ReadLine());
-                //        Console.WriteLine("<-------------------------->");
-
-
-                //    }
-                //}
+               
                
             }
             Console.WriteLine("Press any key to continue: ");
