@@ -13,7 +13,7 @@ namespace PhoneBookLab
         public string lName;
         public string[] address;
         public string phoneNumber;
-        public string filePath = @"C:\Users\diese\Documents\txtFile\Contacts.txt";
+        public string filePath = @"C:\Users\Daniel\OneDrive\Desktop\Contacts.txt";
 
 
         public static List<Contacts> People = new List<Contacts>();
